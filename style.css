@@ -1,0 +1,84 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  margin: 0;
+  padding: 20px;
+  color: #fff;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+/* Контейнер расписания */
+#schedule {
+  display: grid;
+  grid-template-columns: 120px repeat(8, 1fr);
+  gap: 10px;
+}
+
+/* День недели */
+.day {
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Карточка урока */
+.lesson {
+  background: rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 10px;
+  backdrop-filter: blur(10px);
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.lesson:hover {
+  transform: translateY(-5px);
+  background: rgba(255,255,255,0.1);
+}
+
+/* Предмет */
+.subject {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Учитель */
+.teacher {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* Кабинет */
+.room {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* Иконки */
+.icon {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+/* Цвета предметов */
+.math { background: linear-gradient(135deg, #a78bfa, #7c3aed); }
+.bio { background: linear-gradient(135deg, #22c55e, #16a34a); }
+.eng { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+.chem { background: linear-gradient(135deg, #ec4899, #be185d); }
+.pe { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+#schedule {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
+
+#schedule h2 {
+  text-align: center;
+}
