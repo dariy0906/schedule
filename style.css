@@ -1,84 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  margin: 0;
-  padding: 20px;
-  color: #fff;
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #f8f9fa;
+    padding: 24px;
+    color: #1a1a1a;
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 32px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 700;
 }
 
-/* Контейнер расписания */
-#schedule {
-  display: grid;
-  grid-template-columns: 120px repeat(8, 1fr);
-  gap: 10px;
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
 }
 
-/* День недели */
-.day {
-  font-weight: bold;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+select {
+    padding: 10px 16px;
+    font-size: 14px;
+    border: 2px solid #e0e0e0;
+    background: #fff;
+    color: #1a1a1a;
+    cursor: pointer;
+    outline: none;
+    border-radius: 8px;
+    transition: border-color 0.2s;
 }
 
-/* Карточка урока */
-.lesson {
-  background: rgba(255,255,255,0.05);
-  border-radius: 16px;
-  padding: 10px;
-  backdrop-filter: blur(10px);
-  transition: 0.2s;
-  cursor: pointer;
+select:hover, select:focus {
+    border-color: #6366f1;
 }
 
-.lesson:hover {
-  transform: translateY(-5px);
-  background: rgba(255,255,255,0.1);
+#refreshBtn {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid #6366f1;
+    background: #6366f1;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.2s;
 }
 
-/* Предмет */
-.subject {
-  font-size: 14px;
-  font-weight: 600;
+#refreshBtn:hover:not(:disabled) {
+    background: #fff;
+    color: #6366f1;
 }
 
-/* Учитель */
-.teacher {
-  font-size: 12px;
-  opacity: 0.7;
+#refreshBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
-/* Кабинет */
-.room {
-  font-size: 12px;
-  opacity: 0.6;
+#refreshStatus {
+    font-size: 13px;
+    color: #666;
+    min-width: 150px;
 }
 
-/* Иконки */
-.icon {
-  font-size: 18px;
-  margin-bottom: 5px;
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* Цвета предметов */
-.math { background: linear-gradient(135deg, #a78bfa, #7c3aed); }
-.bio { background: linear-gradient(135deg, #22c55e, #16a34a); }
-.eng { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-.chem { background: linear-gradient(135deg, #ec4899, #be185d); }
-.pe { background: linear-gradient(135deg, #ef4444, #b91c1c); }
-#schedule {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 15px;
+table {
+    width: 100%;
+    min-width: 350px;
+    border-collapse: collapse;
+    table-layout: fixed;
 }
 
-#schedule h2 {
-  text-align: center;
+thead th {
+    padding: 28px 1px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    border-bottom: 3px solid #6366f1;
+    background: #6366f1;
+    color: #fff;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+thead th:first-child {
+    text-align: left;
+    padding-left: 10px;
+    min-width: 55px;
+}
+
+thead th.break-header {
+    background: #f59e0b;
+    border-bottom-color: #f59e0b;
+    font-size: 8px;
+}
+
+tbody td {
+    padding: 28px 1px;
+    font-size: 11px;
+    border: 1px solid #f0f0f0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+tbody td:first-child {
+    text-align: left;
+    padding-left: 10px;
+    font-weight: 600;
+    background: #fafafa;
+    white-space: nowrap;
+    min-width: 55px;
+}
+
+tbody tr:hover td {
+    background: #f5f3ff;
+}
+
+tbody tr:hover td:first-child {
+    background: #ede9fe;
+}
+
+td.break-cell {
+    background: #fffbeb;
+    color: #92400e;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    padding: 28px 1px;
+    max-width: 22px;
+}
+
+td.lesson-cell {
+    background: #fff;
+}
+
+td.lesson-cell .subject {
+    font-weight: 600;
+    color: #1a1a1a;
+    display: block;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+td.lesson-cell .room {
+    font-size: 10px;
+    color: #6b7280;
+    margin-top: 2px;
+    display: block;
+}
+
+td.empty-cell {
+    color: #d1d5db;
+    font-style: italic;
+    font-size: 11px;
 }
