@@ -76,6 +76,11 @@ function getClassroomName(classrooms, id) {
     return classroom ? classroom.name : "—";
 }
 
+function getTeacherName(teachers, id) {
+    const teacher = teachers.find((item) => item.id === id);
+    return teacher ? teacher.short : "";
+}
+
 function getBreakName(breaks, afterPeriod) {
     const brk = breaks.find(b => {
         const bt = b.starttime || "";
@@ -131,6 +136,7 @@ function render() {
     const cards = getTableRows(currentData, "cards");
     const subjects = getTableRows(currentData, "subjects");
     const classrooms = getTableRows(currentData, "classrooms");
+    const teachers = getTableRows(currentData, "teachers");
 
     const columns = buildColumns();
 
@@ -173,9 +179,11 @@ function render() {
                     const subject = getSubjectName(subjects, lesson.subjectid);
                     const roomId = Array.isArray(match.classroomids) ? match.classroomids[0] : null;
                     const room = getClassroomName(classrooms, roomId);
+                    const teacherId = Array.isArray(lesson.teacherids) ? lesson.teacherids[0] : null;
+                    const teacher = getTeacherName(teachers, teacherId);
 
                     td.classList.add("lesson-cell");
-                    td.innerHTML = `<span class="subject">${subject}</span><span class="room">${room}</span>`;
+                    td.innerHTML = `<span class="subject">${subject}</span><span class="room">${room}</span><span class="teacher">${teacher}</span>`;
                 } else {
                     td.classList.add("empty-cell");
                     td.textContent = "—";
